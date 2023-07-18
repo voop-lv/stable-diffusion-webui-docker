@@ -16,7 +16,7 @@ a111:
   clip: models/CLIPEncoder
   embeddings: embeddings
 
-  custom_nodes: config/comfy/custom_nodes
+  #custom_nodes: config/comfy/custom_nodes <- Disabled in the config because since you can do the same thing in the Entrypoint mount and in the entrypoint you can save the custom nodes aka addons after a restart
 
   # TODO: I am unsure about these, need more testing
   # style_models: config/comfy/style_models
