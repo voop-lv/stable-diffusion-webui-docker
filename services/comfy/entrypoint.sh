@@ -28,7 +28,7 @@ MOUNTS["${ROOT}/models/upscale_models"]="/data/models/upscale_models"
 MOUNTS["${ROOT}/models/embeddings"]="/data/embeddings"
 MOUNTS["${ROOT}/models/checkpoints"]="/data/models/Stable-diffusion"
 MOUNTS["${ROOT}/models/sams"]="/data/models/sams"
-MOUNTS["${ROOT}/models/sams"]="/data/models/seecoders"
+MOUNTS["${ROOT}/models/seecoders"]="/data/models/seecoders"
 
 install_requirements() {
     local dir="$1"
