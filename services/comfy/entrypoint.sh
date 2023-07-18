@@ -5,12 +5,30 @@ set -Eeuo pipefail
 mkdir -vp /data/config/comfy/custom_nodes
 mkdir -vp /stable-diffusion/custom_nodes
 
+mkdir -vp /data/models/upscale_models
+mkdir -vp /data/models/GLIGEN
+mkdir -vp /data/models/CLIPEncoder
+mkdir -vp /data/models/sams
+mkdir -vp /data/models/seecoders
+
 declare -A MOUNTS
 
 MOUNTS["/root/.cache"]="/data/.cache"
 MOUNTS["${ROOT}/input"]="/data/config/comfy/input"
 MOUNTS["${ROOT}/custom_nodes"]="/data/config/comfy/custom_nodes"
 MOUNTS["${ROOT}/output"]="/output/comfy"
+
+MOUNTS["${ROOT}/models/vae_approx"]="/data/models/VAE-approx"
+MOUNTS["${ROOT}/models/vae"]="/data/models/VAE"
+MOUNTS["${ROOT}/models/loras"]="/data/models/Lora"
+MOUNTS["${ROOT}/models/gligen"]="/data/models/GLIGEN"
+MOUNTS["${ROOT}/models/controlnet"]="/data/models/ControlNet"
+MOUNTS["${ROOT}/models/hypernetworks"]="/data/models/hypernetworks"
+MOUNTS["${ROOT}/models/upscale_models"]="/data/models/upscale_models"
+MOUNTS["${ROOT}/models/embeddings"]="/data/embeddings"
+MOUNTS["${ROOT}/models/checkpoints"]="/data/models/Stable-diffusion"
+MOUNTS["${ROOT}/models/sams"]="/data/models/sams"
+MOUNTS["${ROOT}/models/sams"]="/data/models/seecoders"
 
 install_requirements() {
     local dir="$1"
