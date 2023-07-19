@@ -3,6 +3,7 @@
 set -Eeuo pipefail
 
 mkdir -vp /data/config/comfy/custom_nodes
+mkdir -vp /data/config/comfy/web-extensions
 mkdir -vp /stable-diffusion/custom_nodes
 
 mkdir -vp /data/models/upscale_models
@@ -10,6 +11,8 @@ mkdir -vp /data/models/GLIGEN
 mkdir -vp /data/models/CLIPEncoder
 mkdir -vp /data/models/sams
 mkdir -vp /data/models/seecoders
+
+mkdir -vp ${ROOT}/STARUP_TEMP/web-extensions
 
 declare -A MOUNTS
 
@@ -29,6 +32,9 @@ MOUNTS["${ROOT}/models/embeddings"]="/data/embeddings"
 MOUNTS["${ROOT}/models/checkpoints"]="/data/models/Stable-diffusion"
 MOUNTS["${ROOT}/models/sams"]="/data/models/sams"
 MOUNTS["${ROOT}/models/seecoders"]="/data/models/seecoders"
+MOUNTS["${ROOT}/web/extensions"]="/data/config/comfy/web-extensions"
+
+cp -r -f ${ROOT}/web/extensions/* ${ROOT}/STARUP_TEMP/web-extensions
 
 install_requirements() {
     local dir="$1"
@@ -54,6 +60,7 @@ process_directory() {
     fi
 }
 
+
 for to_path in "${!MOUNTS[@]}"; do
   set -Eeuo pipefail
   from_path="${MOUNTS[${to_path}]}"
@@ -67,5 +74,11 @@ for to_path in "${!MOUNTS[@]}"; do
 done
 
 process_directory "${ROOT}/custom_nodes"
+if [ ! -f "${ROOT}/web/extensions/core" ]; then
+  echo Copying fresh copy of web-extensions core
+  cp -r -f -v ${ROOT}/STARUP_TEMP/web-extensions/* ${ROOT}/web/extensions/
+fi
+
+rm -rf ${ROOT}/STARUP_TEMP/web-extensions
 
 exec "$@"
