@@ -79,6 +79,6 @@ if [ ! -f "${ROOT}/web/extensions/core" ]; then
   cp -r -f -v ${ROOT}/STARUP_TEMP/web-extensions/* ${ROOT}/web/extensions/
 fi
 
-rm -rf ${ROOT}/STARUP_TEMP/web-extensions
+rm -rf ${ROOT}/STARUP_TEMP
 
 exec "$@"
