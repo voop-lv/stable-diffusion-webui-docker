@@ -6,14 +6,14 @@ FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
-RUN apt-get update && apt-get install -y git && apt-get clean
+RUN apt-get update && apt-get install -y git gcc g++ ffmpeg libglfw3-dev libgles2-mesa-dev pkg-config libcairo2 libcairo2-dev build-essential fonts-dejavu-core rsync git jq moreutils aria2 && apt-get clean
 
 ENV ROOT=/stable-diffusion
 RUN --mount=type=cache,target=/root/.cache/pip \
   git clone https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
   git checkout master && \
-  git reset --hard 884ea653c8d6fe19b3724f45a04a0d74cd881f2f && \
+  git reset --hard ff6b047a74745f93d528df19cc3b40c6f185808 && \
   pip install -r requirements.txt
 
 
@@ -24,7 +24,13 @@ RUN --mount=type=cache,target=/root/.cache/pip  \
 
 WORKDIR ${ROOT}
 
-ARG BRANCH=master SHA=8607c2d42d10b0108de02528e813cc703e58813f
+ADD https://github.com/madebyollin/taesd/raw/main/taesd_decoder.pth \
+  ${ROOT}/models/vae_approx/taesd_decoder.pth
+
+ADD https://github.com/madebyollin/taesd/raw/main/taesdxl_decoder.pth \
+  ${ROOT}/models/vae_approx/taesdxl_decoder.pth
+
+ARG BRANCH=master SHA=ff6b047a74745f93d528df19cc3b40c6f185808
 RUN --mount=type=cache,target=/root/.cache/pip \
   git fetch && \
   git checkout ${BRANCH} && \
