@@ -73,6 +73,12 @@ for to_path in "${!MOUNTS[@]}"; do
   echo Mounted $(basename "${from_path}")
 done
 
+if [ -f "/data/config/comfy/startup.sh" ]; then
+  pushd ${ROOT}
+  . /data/config/comfy/startup.sh
+  popd
+fi
+
 process_directory "${ROOT}/custom_nodes"
 if [ ! -f "${ROOT}/web/extensions/core" ]; then
   echo Copying fresh copy of web-extensions core
