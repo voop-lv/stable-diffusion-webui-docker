@@ -11,6 +11,7 @@ mkdir -vp /data/models/GLIGEN
 mkdir -vp /data/models/CLIPEncoder
 mkdir -vp /data/models/sams
 mkdir -vp /data/models/seecoders
+mkdir -vp /data/models/Stable-diffusion-XL-Base
 
 mkdir -vp ${ROOT}/STARUP_TEMP/web-extensions
 
