@@ -13,7 +13,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git clone https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
   git checkout master && \
-  git reset --hard c910b4a01ca58b04e5d4ab4c747680b996ada02b && \
+  git reset --hard e4a3e9e54cb2c153be91b804a86b87ad344249e4 && \
   pip install -r requirements.txt
 
 
@@ -30,7 +30,7 @@ ADD https://github.com/madebyollin/taesd/raw/main/taesd_decoder.pth \
 ADD https://github.com/madebyollin/taesd/raw/main/taesdxl_decoder.pth \
   ${ROOT}/models/vae_approx/taesdxl_decoder.pth
 
-ARG BRANCH=master SHA=c910b4a01ca58b04e5d4ab4c747680b996ada02b
+ARG BRANCH=master SHA=e4a3e9e54cb2c153be91b804a86b87ad344249e4
 RUN --mount=type=cache,target=/root/.cache/pip \
   git fetch && \
   git checkout ${BRANCH} && \
