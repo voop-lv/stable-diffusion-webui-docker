@@ -81,4 +81,10 @@ fi
 
 rm -rf ${ROOT}/STARUP_TEMP
 
+if [ -f "/data/config/comfy/startup.sh" ]; then
+  pushd ${ROOT}
+  . /data/config/comfy/startup.sh
+  popd
+fi
+
 exec "$@"
