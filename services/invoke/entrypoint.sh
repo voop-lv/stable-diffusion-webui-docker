@@ -7,7 +7,7 @@ declare -A MOUNTS
 mkdir -p ${CONFIG_DIR} ${ROOT}/configs/stable-diffusion/
 
 # cache
-MOUNTS["/root/.cache"]=/data/.cache/
+MOUNTS["/root/.cache"]=/data/.invoke_cache/
 
 # this is really just a hack to avoid migrations
 rm -rf ${HF_HOME}/diffusers
@@ -18,7 +18,7 @@ MOUNTS["${ROOT}/models/gfpgan/GFPGANv1.4.pth"]=/data/models/GFPGAN/GFPGANv1.4.pt
 MOUNTS["${ROOT}/models/gfpgan/weights"]=/data/models/GFPGAN/
 MOUNTS["${ROOT}/models/realesrgan"]=/data/models/RealESRGAN/
 
-MOUNTS["${ROOT}/models/ldm"]=/data/.cache/invoke/ldm/
+MOUNTS["${ROOT}/models/ldm"]=/data/.invoke_cache/invoke/ldm/
 
 # hacks
 

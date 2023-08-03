@@ -21,20 +21,20 @@ ENV ROOT=/InvokeAI
 RUN git clone https://github.com/invoke-ai/InvokeAI.git ${ROOT}
 WORKDIR ${ROOT}
 
-RUN --mount=type=cache,target=/root/.cache/pip \
-  git reset --hard f3b2e02921927d9317255b1c3811f47bd40a2bf9 && \
+RUN --mount=type=cache,target=/root/.invoke_cache/pip \
+  git reset --hard bf94412d1499e48d6bd9dfa415ff7f1aeead6710 && \
   pip install -e .
 
 
-ARG BRANCH=main SHA=f3b2e02921927d9317255b1c3811f47bd40a2bf9
-RUN --mount=type=cache,target=/root/.cache/pip \
+ARG BRANCH=main SHA=bf94412d1499e48d6bd9dfa415ff7f1aeead6710
+RUN --mount=type=cache,target=/root/.invoke_cache/pip \
   git fetch && \
   git reset --hard && \
   git checkout ${BRANCH} && \
   git reset --hard ${SHA} && \
   pip install -U -e .
 
-RUN --mount=type=cache,target=/root/.cache/pip \
+RUN --mount=type=cache,target=/root/.invoke_cache/pip \
   --mount=type=bind,from=xformers,source=/wheel.whl,target=/xformers-0.0.21-cp310-cp310-linux_x86_64.whl \
   pip install -U opencv-python-headless triton /xformers-0.0.21-cp310-cp310-linux_x86_64.whl && \
   python3 -c "from patchmatch import patch_match"
@@ -43,11 +43,11 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 COPY . /docker/
 
 ENV NVIDIA_VISIBLE_DEVICES=all
-ENV PYTHONUNBUFFERED=1 PRELOAD=false HF_HOME=/root/.cache/huggingface CONFIG_DIR=/data/config/invoke CLI_ARGS=""
+ENV PYTHONUNBUFFERED=1 PRELOAD=false HF_HOME=/root/.invoke_cache/huggingface CONFIG_DIR=/data/config/invoke CLI_ARGS=""
 EXPOSE 7860
 
 ENTRYPOINT ["/docker/entrypoint.sh"]
-CMD invokeai --web --host 0.0.0.0 --port 7860 --root_dir ${ROOT} --config ${CONFIG_DIR}/models.yaml \
-  --outdir /output/invoke --embedding_directory /data/embeddings/ --lora_directory /data/models/Lora \
-  --no-nsfw_checker --no-safety_checker ${CLI_ARGS}
+CMD invokeai --web --host 0.0.0.0 --port 7860 --root ${ROOT} --conf_path ${CONFIG_DIR}/models.yaml \
+  --outdir /output/invoke --embedding_dir /data/models/embeddings/ --lora_dir /data/models/Lora --controlnet_dir /data/models/ControlNet \
+  --no-nsfw_checker --no-nsfw_checker ${CLI_ARGS}
 
