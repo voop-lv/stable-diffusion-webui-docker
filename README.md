@@ -34,6 +34,11 @@ This repository provides multiple UIs for you to play around with stable diffusi
 | -------------------------------------------------------------------------------- |
 | ![](https://github.com/comfyanonymous/ComfyUI/raw/master/comfyui_screenshot.png) |
 
+
+### [Sygil](https://github.com/Sygil-Dev/sygil-webui)
+
+TO BE UPDATED
+
 ## Contributing
 
 Contributions are welcome! **Create a discussion first of what the problem is and what you want to contribute (before you implement anything)**
