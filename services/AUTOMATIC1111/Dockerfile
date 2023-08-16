@@ -44,7 +44,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
   cd stable-diffusion-webui && \
   git checkout dev && \ 
-  git reset --hard e56b7c84194b1e3474cbc1ee45d05e905b37b5d6 && \
+  git reset --hard 023a3a98a1c1e067e12c155164150c5ba01748d0 && \
   pip install -r requirements_versions.txt
 
 RUN --mount=type=cache,target=/root/.cache/pip  \
@@ -71,7 +71,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 RUN apt-get -y install libgoogle-perftools-dev && apt-get clean
 ENV LD_PRELOAD=libtcmalloc.so
 
-ARG SHA=e56b7c84194b1e3474cbc1ee45d05e905b37b5d6
+ARG SHA=023a3a98a1c1e067e12c155164150c5ba01748d0
 RUN --mount=type=cache,target=/root/.cache/pip \
   cd stable-diffusion-webui && \
   git checkout dev && \
