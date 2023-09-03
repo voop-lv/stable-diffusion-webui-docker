@@ -10,11 +10,11 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git config --global http.postBuffer 1048576000 && \
   git clone https://github.com/Sygil-Dev/sygil-webui.git stable-diffusion && \
   cd stable-diffusion && \
-  git reset --hard a54f3596080cbf7792dcd874c961bb1b8b270e36 && \
+  git reset --hard 91a4eba30c8ad8899bccb4a1e4642adfbcc9af13 && \
   pip install -r requirements.txt
 
 
-ARG BRANCH=master SHA=a54f3596080cbf7792dcd874c961bb1b8b270e36
+ARG BRANCH=master SHA=91a4eba30c8ad8899bccb4a1e4642adfbcc9af13
 RUN --mount=type=cache,target=/root/.cache/pip \
   cd stable-diffusion && \
   git fetch && \

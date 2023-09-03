@@ -14,7 +14,7 @@ RUN . /clone.sh CodeFormer https://github.com/sczhou/CodeFormer.git c5b4593074ba
 RUN . /clone.sh BLIP https://github.com/salesforce/BLIP.git 48211a1594f1321b00f14c9f7a5b4813144b2fb9
 RUN . /clone.sh k-diffusion https://github.com/crowsonkb/k-diffusion.git c9fe758757e022f05ca5a53fa8fac28889e4f1cf
 RUN . /clone.sh clip-interrogator https://github.com/pharmapsychotic/clip-interrogator 2486589f24165c8e3b303f84e9dbbea318df83e8
-RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-models 5c10deee76adad0032b412294130090932317a87
+RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-models 477d8b9a7730d9b2e92b326a770c0420d00308c9
 
 
 FROM alpine:3.17 as xformers
@@ -45,7 +45,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
   cd stable-diffusion-webui && \
   git checkout dev && \ 
-  git reset --hard 023a3a98a1c1e067e12c155164150c5ba01748d0 && \
+  git reset --hard d39440bfb9d3b20338fc23a78e6655b1e2f7c1d5 && \
   pip install -r requirements_versions.txt
 
 RUN --mount=type=cache,target=/root/.cache/pip  \
@@ -72,7 +72,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 RUN apt-get -y install libgoogle-perftools-dev && apt-get clean
 ENV LD_PRELOAD=libtcmalloc.so
 
-ARG SHA=023a3a98a1c1e067e12c155164150c5ba01748d0
+ARG SHA=d39440bfb9d3b20338fc23a78e6655b1e2f7c1d5
 RUN --mount=type=cache,target=/root/.cache/pip \
   cd stable-diffusion-webui && \
   git checkout dev && \
