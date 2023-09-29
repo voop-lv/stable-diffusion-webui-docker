@@ -10,7 +10,7 @@ RUN . /clone.sh CodeFormer https://github.com/sczhou/CodeFormer.git 8392d0334956
   && rm -rf assets inputs
 
 RUN . /clone.sh BLIP https://github.com/salesforce/BLIP.git 48211a1594f1321b00f14c9f7a5b4813144b2fb9
-RUN . /clone.sh k-diffusion https://github.com/crowsonkb/k-diffusion.git ab527a9a6d347f364e3d185ba6d714e22d80cb3c
+RUN . /clone.sh k-diffusion https://github.com/crowsonkb/k-diffusion.git f4a74f1ec906cb62916f58288ec73ef0330ba446
 RUN . /clone.sh clip-interrogator https://github.com/pharmapsychotic/clip-interrogator bc07ce62c179d3aab3053a623d96a071101d11cb
 RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-models 477d8b9a7730d9b2e92b326a770c0420d00308c9
 
@@ -59,7 +59,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   pip install pyngrok \
   git+https://github.com/TencentARC/GFPGAN.git@2eac2033893ca7f427f4035d80fe95b92649ac56 \
   git+https://github.com/openai/CLIP.git@a1d071733d7111c9c014f024669f959182114e33 \
-  git+https://github.com/mlfoundations/open_clip.git@79a20ee9e13d612b44bebe1581aa83cf467c281b
+  git+https://github.com/mlfoundations/open_clip.git@91b7b512d26899e8b660414daea509d5bda38aec
 
 
 # Note: don't update the sha of previous versions because the install will take forever
