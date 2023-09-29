@@ -29,9 +29,9 @@ services:
     <<: *base_service
     profiles: ["auto"]
     build: ./services/AUTOMATIC1111
-    image: sd-auto:63
+    image: sd-auto:67
     environment:
-      - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
+      - CLI_ARGS=--allow-code --xformers --enable-insecure-extension-access --api
 
   auto-cpu:
     <<: *automatic
@@ -60,7 +60,7 @@ services:
     <<: *base_service
     profiles: ["comfy"]
     build: ./services/comfy/
-    image: sd-comfy:4
+    image: sd-comfy:5
     environment:
       - CLI_ARGS=--preview-method=taesd
 
@@ -71,3 +71,18 @@ services:
     deploy: {}
     environment:
       - CLI_ARGS=--cpu
+  
+  sygil: &sygil
+    <<: *base_service
+    profiles: ["sygil"]
+    build: ./services/sygil/
+    image: sd-sygil:16
+    environment:
+      - CLI_ARGS=--optimized-turbo
+      - USE_STREAMLIT=0
+
+  sygil-sl:
+    <<: *sygil
+    profiles: ["sygil-sl"]
+    environment:
+      - USE_STREAMLIT=1

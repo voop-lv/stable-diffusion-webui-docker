@@ -11,6 +11,7 @@ mkdir -vp /data/models/GLIGEN
 mkdir -vp /data/models/CLIPEncoder
 mkdir -vp /data/models/sams
 mkdir -vp /data/models/seecoders
+mkdir -vp /data/models/Stable-diffusion-XL-Base
 
 mkdir -vp ${ROOT}/STARUP_TEMP/web-extensions
 
@@ -28,7 +29,7 @@ MOUNTS["${ROOT}/models/gligen"]="/data/models/GLIGEN"
 MOUNTS["${ROOT}/models/controlnet"]="/data/models/ControlNet"
 MOUNTS["${ROOT}/models/hypernetworks"]="/data/models/hypernetworks"
 MOUNTS["${ROOT}/models/upscale_models"]="/data/models/upscale_models"
-MOUNTS["${ROOT}/models/embeddings"]="/data/embeddings"
+MOUNTS["${ROOT}/models/embeddings"]="/data/models/embeddings"
 MOUNTS["${ROOT}/models/checkpoints"]="/data/models/Stable-diffusion"
 MOUNTS["${ROOT}/models/sams"]="/data/models/sams"
 MOUNTS["${ROOT}/models/seecoders"]="/data/models/seecoders"
@@ -86,5 +87,11 @@ if [ ! -f "${ROOT}/web/extensions/core" ]; then
 fi
 
 rm -rf ${ROOT}/STARUP_TEMP
+
+if [ -f "/data/config/comfy/startup.sh" ]; then
+  pushd ${ROOT}
+  . /data/config/comfy/startup.sh
+  popd
+fi
 
 exec "$@"

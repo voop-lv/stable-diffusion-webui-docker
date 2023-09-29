@@ -40,6 +40,18 @@ git clone https://github.com/ashen-sensored/stable-diffusion-webui-two-shot /dat
 git clone https://github.com/thomasasfk/sd-webui-aspect-ratio-helper /data/config/auto/extensions/sd-webui-aspect-ratio-helper
 git clone https://github.com/tjm35/asymmetric-tiling-sd-webui /data/config/auto/extensions/asymmetric-tiling-sd-webui
 
+wget -NO /data/Stable-diffusion/models/sd_xl_offset_example-lora_1.0.safetensors "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_offset_example-lora_1.0.safetensors"
+wget -NO /data/Stable-diffusion/models/sd_xl_base_1.0.safetensors "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
+wget -NO /data/Stable-diffusion/models/sd_xl_refiner_1.0.safetensors "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/blob/main/sd_xl_refiner_1.0.safetensors"
+wget -NO /data/Stable-diffusion/models/dreamshaper7.safetensors "https://civitai.com/api/download/models/109123"
+
+wget -NO /data/models/ControlNet/control_v1p_sd15_brightness.safetensors "https://huggingface.co/ioclab/control_v1p_sd15_brightness/resolve/main/diffusion_pytorch_model.safetensors"
+wget -NO /data/models/ControlNet/control_v1p_sd15_brightness.yaml "https://huggingface.co/webui/ControlNet-modules-safetensors/raw/main/cldm_v15.yaml"
+wget -NO /data/models/ControlNet/qr-controlnet.safetensors "https://civitai.com/api/download/models/111973?type=Model&format=SafeTensor"
+wget -NO /data/models/ControlNet/qr-controlnet.yaml "https://civitai.com/api/download/models/111973?type=Config&format=Other"
+
+wget -NO /data/models/embeddings/FastNegativeV2.pt "https://civitai.com/api/download/models/94057?type=Model&format=PickleTensor"
+
 echo "Checking SHAs..."
 
 parallel --will-cite -a /docker/checksums.sha256 "echo -n {} | sha256sum -c"

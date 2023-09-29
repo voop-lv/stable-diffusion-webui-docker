@@ -30,7 +30,7 @@ declare -A MOUNTS
 MOUNTS["/root/.cache"]="/data/.cache"
 MOUNTS["${ROOT}/models"]="/data/models"
 
-MOUNTS["${ROOT}/embeddings"]="/data/embeddings"
+MOUNTS["${ROOT}/embeddings"]="/data/models/embeddings"
 MOUNTS["${ROOT}/config.json"]="/data/config/auto/config.json"
 MOUNTS["${ROOT}/ui-config.json"]="/data/config/auto/ui-config.json"
 MOUNTS["${ROOT}/styles.csv"]="/data/config/auto/styles.csv"
@@ -62,6 +62,12 @@ shopt -s nullglob
 # For install.py, please refer to https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Developing-extensions#installpy
 list=(./extensions/*/install.py)
 for installscript in "${list[@]}"; do
+  EXTNAME=`echo $installscript | cut -d '/' -f 3`
+  # Skip installing dependencies if extension is disabled in config
+  if `jq -e ".disabled_extensions|any(. == \"$EXTNAME\")" config.json`; then
+    echo "Skipping disabled extension ($EXTNAME)"
+    continue
+  fi
   PYTHONPATH=${ROOT} python "$installscript"
 done
 
