@@ -3,7 +3,7 @@ FROM alpine/git:2.36.2 as download
 COPY clone.sh /clone.sh
 
 
-RUN . /clone.sh stable-diffusion-stability-ai https://github.com/Stability-AI/stablediffusion.git 215046a1b4ac5add65a0b45accc7d33ecfe4efa9 \
+RUN . /clone.sh stable-diffusion-stability-ai https://github.com/Stability-AI/stablediffusion.git cf1d67a6fd5ea1aa600c4df58e5b47da45f6bdbf \
   && rm -rf assets data/**/*.png data/**/*.jpg data/**/*.gif
 
 RUN . /clone.sh CodeFormer https://github.com/sczhou/CodeFormer.git 8392d0334956108ab53d9439c4b9fc9c4af0d66d \
@@ -41,7 +41,11 @@ RUN --mount=type=cache,target=/cache --mount=type=cache,target=/root/.cache/pip 
 RUN --mount=type=cache,target=/root/.cache/pip \
   git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
   cd stable-diffusion-webui && \
-  git reset --hard 5ef669de080814067961f28357256e8fe27544f4 && \
+  git checkout dev && \
+  git stash && \
+  git pull && \
+  git fetch && \
+  #git reset --hard 5ef669de080814067961f28357256e8fe27544f4 && \
   pip install -r requirements_versions.txt
 
 RUN --mount=type=cache,target=/root/.cache/pip  \
@@ -57,8 +61,10 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 RUN --mount=type=cache,target=/root/.cache/pip \
   pip install pyngrok \
-  git+https://github.com/TencentARC/GFPGAN.git@2eac2033893ca7f427f4035d80fe95b92649ac56 \
-  git+https://github.com/openai/CLIP.git@a1d071733d7111c9c014f024669f959182114e33 \
+#  git+https://github.com/TencentARC/GFPGAN.git@2eac2033893ca7f427f4035d80fe95b92649ac56 \
+#  git+https://github.com/openai/CLIP.git@a1d071733d7111c9c014f024669f959182114e33 \
+  git+https://github.com/TencentARC/GFPGAN.git \
+  git+https://github.com/openai/CLIP.git \
   git+https://github.com/mlfoundations/open_clip.git@91b7b512d26899e8b660414daea509d5bda38aec
 
 
@@ -73,8 +79,10 @@ ARG SHA=5ef669de080814067961f28357256e8fe27544f4
 RUN --mount=type=cache,target=/root/.cache/pip \
   cd stable-diffusion-webui && \
   git checkout dev && \
+  git stash && \
+  git pull && \
   git fetch && \
-  git reset --hard ${SHA} && \
+  # git reset --hard ${SHA} && \
   pip install -r requirements_versions.txt
 
 COPY . /docker
