@@ -7,6 +7,7 @@ RUN apt install -y git wget build-essential python3.11 python3.11-venv git curl
 WORKDIR /
 
 COPY entrypoint.sh /entrypoint.sh
+COPY mount.sh /mount.sh
 
 RUN git clone https://github.com/Stability-AI/StableSwarmUI.git && \
   cd StableSwarmUI && \
