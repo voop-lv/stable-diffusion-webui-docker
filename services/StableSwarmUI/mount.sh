@@ -6,7 +6,7 @@ declare -A MOUNTS
 
 ROOT=/StableSwarmUI
 
-MOUNTS["${ROOT}/Data"]=/data/config/StableSwarnUI
+MOUNTS["${ROOT}/Data"]="/data/config/StableSwarnUI"
 
 MOUNTS["${ROOT}/Models/Stable-Diffusion"]="/data/models/Stable-diffusion"
 MOUNTS["${ROOT}/Models/Lora"]="/data/models/Lora"
