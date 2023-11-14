@@ -5,6 +5,7 @@ set -Eeuo pipefail
 declare -A MOUNTS
 
 ROOT=/StableSwarmUI
+mkdir -p /data/config/StableSwarnUI/
 
 MOUNTS["${ROOT}/Data"]="/data/config/StableSwarnUI"
 
