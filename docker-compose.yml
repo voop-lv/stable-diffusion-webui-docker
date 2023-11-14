@@ -86,3 +86,11 @@ services:
     profiles: ["sygil-sl"]
     environment:
       - USE_STREAMLIT=1
+  
+  ssui: &stableswarmui
+    <<: *base_service
+    profiles: ["ssui"]
+    build: ./services/StableSwarmUI
+    image: sd-ssui:1
+    environment:
+      - CLI_ARGS=--launch_mode none --host 0.0.0.0
