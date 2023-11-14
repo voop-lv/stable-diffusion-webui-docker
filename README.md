@@ -39,6 +39,10 @@ This repository provides multiple UIs for you to play around with stable diffusi
 
 TO BE UPDATED
 
+### [StableSwarmUI](https://github.com/Stability-AI/StableSwarmUI)
+
+TO BE UPDATED
+
 ## Contributing
 
 Contributions are welcome! **Create a discussion first of what the problem is and what you want to contribute (before you implement anything)**
