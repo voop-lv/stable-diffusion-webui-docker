@@ -14,8 +14,5 @@ RUN git clone https://github.com/Stability-AI/StableSwarmUI.git && \
 
 ENV ROOT=/StableSwarmUI
 
-# Send the port forward
-EXPOSE 7801
-
 # Set the run file to the launch script
 ENTRYPOINT ["bash", "entrypoint.sh"]
