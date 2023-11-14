@@ -11,8 +11,8 @@ RUN . /clone.sh CodeFormer https://github.com/sczhou/CodeFormer.git 8392d0334956
 
 RUN . /clone.sh BLIP https://github.com/salesforce/BLIP.git 48211a1594f1321b00f14c9f7a5b4813144b2fb9
 RUN . /clone.sh k-diffusion https://github.com/crowsonkb/k-diffusion.git 045515774882014cc14c1ba2668ab5bad9cbf7c0
-RUN . /clone.sh clip-interrogator https://github.com/pharmapsychotic/clip-interrogator bc07ce62c179d3aab3053a623d96a071101d11cb
-RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-models 477d8b9a7730d9b2e92b326a770c0420d00308c9
+RUN . /clone.sh clip-interrogator https://github.com/pharmapsychotic/clip-interrogator.git bc07ce62c179d3aab3053a623d96a071101d11cb
+RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-models.git 477d8b9a7730d9b2e92b326a770c0420d00308c9
 
 
 FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
