@@ -93,4 +93,4 @@ services:
     build: ./services/StableSwarmUI
     image: sd-ssui:1
     environment:
-      - CLI_ARGS=--launch_mode none --host 0.0.0.0
+      - CLI_ARGS=--launch_mode none --host 0.0.0.0 --port 7860
