@@ -32,7 +32,8 @@ ADD https://github.com/madebyollin/taesd/raw/main/taesdxl_decoder.pth \
 RUN --mount=type=cache,target=/root/.cache/pip \
   git fetch && \
   git checkout ${BRANCH} && \
-  pip install -r requirements.txt
+  pip install -r requirements.txt && \
+  pip install opencv-python
 
 # add info
 COPY . /docker/
