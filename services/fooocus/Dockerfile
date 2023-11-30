@@ -44,8 +44,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git+https://github.com/openai/CLIP.git@d50d76daa670286dd6cacf3bcd80b5e4823fc8e1 \
   git+https://github.com/mlfoundations/open_clip.git@91923dfc376afb9d44577a0c9bd0930389349438
 
-RUN --mount=type=cache,target=/root/.cache/pip pip3 install open-clip-torch==2.20.0 
-RUN --mount=type=cache,target=/root/.cache/pip pip3 install virtualenv
+RUN --mount=type=cache,target=/root/.cache/pip pip3 install open-clip-torch==2.20.0 numpy virtualenv
 
 COPY . /docker
 
@@ -56,8 +55,9 @@ RUN \
   git config --global --add safe.directory '*'
 
 RUN virtualenv /venv
-RUN . /venv/bin/activate
-
+RUN . /venv/bin/activate && \
+    cd /fooocus-app \
+    pip3 install -r requirements_versions.txt
 
 WORKDIR ${ROOT}
 ENV NVIDIA_VISIBLE_DEVICES=all
