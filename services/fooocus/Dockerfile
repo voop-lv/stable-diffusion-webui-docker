@@ -55,8 +55,8 @@ RUN \
   git config --global --add safe.directory '*'
 
 RUN \
-  python3 -m venv fooocus_env
-  pip install -r requirements_versions.txt
+  python3 -m venv fooocus_env \
+  pip install -r requirements_versions.txt \
   source fooocus_env/bin/activate
 
 WORKDIR ${ROOT}
