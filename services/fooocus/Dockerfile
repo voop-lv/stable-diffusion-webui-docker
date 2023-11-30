@@ -44,7 +44,8 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git+https://github.com/openai/CLIP.git@d50d76daa670286dd6cacf3bcd80b5e4823fc8e1 \
   git+https://github.com/mlfoundations/open_clip.git@91923dfc376afb9d44577a0c9bd0930389349438
 
-RUN pip install open-clip-torch==2.20.0 
+RUN --mount=type=cache,target=/root/.cache/pip pip3 install open-clip-torch==2.20.0 
+RUN --mount=type=cache,target=/root/.cache/pip pip3 install virtualenv
 
 COPY . /docker
 
@@ -54,14 +55,14 @@ RUN \
   sed -i 's/in_app_dir = .*/in_app_dir = True/g' /opt/conda/lib/python3.10/site-packages/gradio/routes.py && \
   git config --global --add safe.directory '*'
 
-RUN \
-  python3 -m venv fooocus_env \
-  pip install -r requirements_versions.txt \
-  source fooocus_env/bin/activate
+RUN virtualenv /venv
+RUN . /venv/bin/activate
+
 
 WORKDIR ${ROOT}
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV CLI_ARGS=""
 EXPOSE 7860
-ENTRYPOINT ["/docker/entrypoint.sh"]
 
+ENTRYPOINT [ "bash", "-c", ". /venv/bin/activate && exec \"$@\"", "--" ]
+CMD [ "python3", "launch.py", "--listen" ]
