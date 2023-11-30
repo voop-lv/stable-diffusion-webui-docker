@@ -9,15 +9,12 @@ RUN . /clone.sh stable-diffusion-stability-ai https://github.com/Stability-AI/st
 RUN . /clone.sh CodeFormer https://github.com/sczhou/CodeFormer.git 8392d0334956108ab53d9439c4b9fc9c4af0d66d \
   && rm -rf assets inputs
 
-FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
-
-ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
-
-RUN apt-get update && apt-get install -y git gcc g++ ffmpeg libglfw3-dev libgles2-mesa-dev pkg-config libcairo2 libcairo2-dev build-essential fonts-dejavu-core rsync git jq moreutils aria2 && apt-get clean
 RUN . /clone.sh BLIP https://github.com/salesforce/BLIP.git 48211a1594f1321b00f14c9f7a5b4813144b2fb9
 RUN . /clone.sh k-diffusion https://github.com/crowsonkb/k-diffusion.git 045515774882014cc14c1ba2668ab5bad9cbf7c0
 RUN . /clone.sh clip-interrogator https://github.com/pharmapsychotic/clip-interrogator.git bc07ce62c179d3aab3053a623d96a071101d11cb
 RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-models.git 059d8e9cd9c55aea1ef2ece39abf605efb8b7cc9
+
+FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
@@ -26,7 +23,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
   # we need those
   apt-get install -y fonts-dejavu-core rsync git jq moreutils aria2 \
   # extensions needs those
-  ffmpeg libglfw3-dev libgles2-mesa-dev pkg-config libcairo2 libcairo2-dev build-essential
+  ffmpeg libglfw3-dev libgles2-mesa-dev pkg-config libcairo2 libcairo2-dev build-essential g++ gcc
 
 WORKDIR /
 RUN --mount=type=cache,target=/root/.cache/pip \
