@@ -27,7 +27,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
 
 WORKDIR /
 RUN --mount=type=cache,target=/root/.cache/pip \
-  git clone https://github.com/lllyasviel/Fooocus.git  && \
+  git clone https://github.com/lllyasviel/Fooocus.git fooocus-app && \
   cd fooocus-app && \
   pip install -r requirements_versions.txt
 
