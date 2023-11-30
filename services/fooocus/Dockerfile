@@ -1,4 +1,5 @@
-FROM nvidia/cuda:12.2.0-runtime-ubuntu22.04
+FROM nvidia/cuda:12.2.2-runtime-ubuntu22.04
+FROM alpine/git:2.36.2 as download
 
 COPY clone.sh /clone.sh
 
@@ -18,7 +19,7 @@ RUN . /clone.sh k-diffusion https://github.com/crowsonkb/k-diffusion.git 0455157
 RUN . /clone.sh clip-interrogator https://github.com/pharmapsychotic/clip-interrogator.git bc07ce62c179d3aab3053a623d96a071101d11cb
 RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-models.git 059d8e9cd9c55aea1ef2ece39abf605efb8b7cc9
 
-FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
+FROM pytorch/pytorch:2.1.1-cuda12.1-cudnn8-runtime
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
