@@ -55,9 +55,7 @@ RUN \
   git config --global --add safe.directory '*'
 
 RUN virtualenv /venv
-RUN . /venv/bin/activate && \
-    cd /fooocus-app \
-    pip install -r requirements_versions.txt
+RUN . /venv/bin/activate
 
 WORKDIR ${ROOT}
 ENV NVIDIA_VISIBLE_DEVICES=all
