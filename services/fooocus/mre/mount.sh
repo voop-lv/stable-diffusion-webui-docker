@@ -5,6 +5,7 @@ ROOT_PAHT="/fooocus-ai"
 
 mkdir /data/models/model_configs > /dev/null 2>&1
 mkdir /data/models/prompt_expansion > /dev/null 2>&1
+mkdir /data/models/clip_vision > /dev/null 2>&1
 
 if [ -z "$(ls -A /data/models/prompt_expansion)" ]; then
     cp -r -f -v /cleanConfig/prompt_expansion/* /data/models/prompt_expansion
@@ -23,6 +24,7 @@ MOUNTS["${ROOT}/models/gligen"]="/data/models/GLIGEN"
 MOUNTS["${ROOT}/models/embeddings"]="/data/models/embeddings"
 MOUNTS["${ROOT}/models/vae"]="/data/models/VAE"
 MOUNTS["${ROOT}/models/vae_approx"]="/data/models/VAE-approx"
+MOUNTS["${ROOT}/models/clip_vision"]="/data/models/clip_vision"
 MOUNTS["${ROOT}/models/hypernetworks"]="/data/models/hypernetworks"
 MOUNTS["${ROOT}/models/upscale_models"]="/data/models/upscale_models"
 MOUNTS["${ROOT}/models/configs"]="/data/models/model_configs"
