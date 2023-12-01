@@ -13,7 +13,6 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git clone https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
   git checkout master && \
-  git reset --hard 0f17993d0587254fcff06bf689dfe38300ea8834 && \
   pip install -r requirements.txt
 
 
@@ -30,12 +29,11 @@ ADD https://github.com/madebyollin/taesd/raw/main/taesd_decoder.pth \
 ADD https://github.com/madebyollin/taesd/raw/main/taesdxl_decoder.pth \
   ${ROOT}/models/vae_approx/taesdxl_decoder.pth
 
-ARG BRANCH=master SHA=0f17993d0587254fcff06bf689dfe38300ea8834
 RUN --mount=type=cache,target=/root/.cache/pip \
   git fetch && \
   git checkout ${BRANCH} && \
-  git reset --hard ${SHA} && \
-  pip install -r requirements.txt
+  pip install -r requirements.txt && \
+  pip install opencv-python
 
 # add info
 COPY . /docker/

@@ -29,7 +29,7 @@ services:
     <<: *base_service
     profiles: ["auto"]
     build: ./services/AUTOMATIC1111
-    image: sd-auto:67
+    image: sd-auto:68
     environment:
       - CLI_ARGS=--allow-code --xformers --enable-insecure-extension-access --api
 
@@ -86,3 +86,31 @@ services:
     profiles: ["sygil-sl"]
     environment:
       - USE_STREAMLIT=1
+  
+  ssui: &stableswarmui
+    <<: *base_service
+    profiles: ["ssui"]
+    build: ./services/StableSwarmUI
+    image: sd-ssui:1
+    environment:
+      - CLI_ARGS=--launch_mode none --host 0.0.0.0 --port 7860
+
+  fooocus-mre: &fooocus-mre
+    <<: *base_service
+    profiles: ["fooocus-mre"]
+    build: ./services/fooocus/mre
+    image: sd-fooocus-mre:1
+    stdin_open: true
+    tty: true
+    environment:
+      - CLI_ARGS=
+
+  fooocus: &fooocus
+    <<: *base_service
+    profiles: ["fooocus"]
+    build: ./services/fooocus/main
+    image: sd-fooocus:1
+    stdin_open: true
+    tty: true
+    environment:
+      - CLI_ARGS=
