@@ -45,3 +45,5 @@ cp -r -f -v $SETTINGS_FILEPATH $ROOT_PAHT
 
 echo "[BOOTSTRAP] Applying Mounts"
 bash /mount.sh
+
+cd $ROOT_PAHT && python entry_with_update.py --listen ${CLI_ARGS}

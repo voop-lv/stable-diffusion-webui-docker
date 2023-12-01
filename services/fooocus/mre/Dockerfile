@@ -33,4 +33,3 @@ ENV NVIDIA_VISIBLE_DEVICES=all
 ENV CLI_ARGS=""
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD cd /fooocus-ai && python entry_with_update.py --listen ${CLI_ARGS}
