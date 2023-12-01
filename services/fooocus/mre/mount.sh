@@ -4,6 +4,15 @@ declare -A MOUNTS
 ROOT_PAHT="/fooocus-ai"
 
 mkdir /data/models/model_configs
+mkdir /data/models/prompt_expansion
+
+if [ -z "$(ls -A /data/models/prompt_expansion)" ]; then
+    cp -r -f -v /cleanConfig/prompt_expansion/* /data/models/prompt_expansion
+fi
+
+if [ -z "$(ls -A /data/models/model_configs)" ]; then
+    cp -r -f -v /cleanConfig/model_configs/* /data/models/model_configs
+fi
 
 MOUNTS["${ROOT}/outputs"]="/output"
 
@@ -17,6 +26,7 @@ MOUNTS["${ROOT}/models/vae_approx"]="/data/models/VAE-approx"
 MOUNTS["${ROOT}/models/hypernetworks"]="/data/models/hypernetworks"
 MOUNTS["${ROOT}/models/upscale_models"]="/data/models/upscale_models"
 MOUNTS["${ROOT}/models/configs"]="/data/models/model_configs"
+MOUNTS["${ROOT}/models/prompt_expansion"]="/data/models/prompt_expansion"
 
 for to_path in "${!MOUNTS[@]}"; do
   set -Eeuo pipefail
