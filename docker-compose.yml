@@ -95,10 +95,10 @@ services:
     environment:
       - CLI_ARGS=--launch_mode none --host 0.0.0.0 --port 7860
 
-  fooocus: &fooocus
+  fooocus-mre: &fooocus-mre
     <<: *base_service
-    profiles: ["fooocus"]
-    build: ./services/fooocus
-    image: sd-fooocus:1
+    profiles: ["fooocus-mre"]
+    build: ./services/fooocus/mre
+    image: sd-fooocus-mre:1
     environment:
-      - CLI_ARGS= --listen
+      - CLI_ARGS=
