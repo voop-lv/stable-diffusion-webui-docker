@@ -104,3 +104,13 @@ services:
     tty: true
     environment:
       - CLI_ARGS=
+
+  fooocus: &fooocus
+    <<: *base_service
+    profiles: ["fooocus"]
+    build: ./services/fooocus/main
+    image: sd-fooocus:1
+    stdin_open: true
+    tty: true
+    environment:
+      - CLI_ARGS=
