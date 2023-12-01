@@ -47,5 +47,5 @@ echo "[BOOTSTRAP] Applying Mounts"
 bash /mount.sh
 
 cd $ROOT_PAHT && \
-    source fooocus_env/bin/activate && \
+    #source fooocus_env/bin/activate && \
     python entry_with_update.py --listen ${CLI_ARGS}
