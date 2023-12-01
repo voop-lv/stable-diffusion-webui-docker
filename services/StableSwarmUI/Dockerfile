@@ -11,7 +11,7 @@ COPY mount.sh /mount.sh
 
 RUN git clone https://github.com/Stability-AI/StableSwarmUI.git && \
   cd StableSwarmUI && \
-  git reset --hard 150e563e2c5dc63c8b1c4cbca743457936a7d500
+  git reset --hard 9975621dd51926c9e14ff96954a042eeac9917b6
 
 ENV ROOT=/StableSwarmUI
 
