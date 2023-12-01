@@ -16,8 +16,13 @@ RUN git clone https://github.com/MoonRide303/Fooocus-MRE /fooocus-ai && \
 
 ENV ROOT=/fooocus-ai
 
-RUN mkdir -p /cleanConfig/prompt_expansio && \
-    cp -r -f -v ${ROOT}/models/prompt_expansion/* /cleanConfig/prompt_expansio &&\
+RUN mkdir -p /cleanConfig && \
+    mkdir /cleanConfig/prompt_expansion && \
+    mkdir /cleanConfig/sdxl_style && \
+    mkdir /cleanConfig/model_configs && \
+    cp -r -f -v ${ROOT}/models/prompt_expansion/* /cleanConfig/prompt_expansion && \
+    cp -r -f -v ${ROOT}/models/configs/* /cleanConfig/model_configs && \
+    cp -r -f -v ${ROOT}/sdxl_styles/* /cleanConfig/sdxl_styles && \
     cp -r -f -v ${ROOT}/settings-example.json /cleanConfig/settings.json
 
 WORKDIR ${ROOT}
