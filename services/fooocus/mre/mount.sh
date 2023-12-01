@@ -3,8 +3,8 @@
 declare -A MOUNTS
 ROOT_PAHT="/fooocus-ai"
 
-mkdir /data/models/model_configs
-mkdir /data/models/prompt_expansion
+mkdir /data/models/model_configs > /dev/null 2>&1
+mkdir /data/models/prompt_expansion > /dev/null 2>&1
 
 if [ -z "$(ls -A /data/models/prompt_expansion)" ]; then
     cp -r -f -v /cleanConfig/prompt_expansion/* /data/models/prompt_expansion
