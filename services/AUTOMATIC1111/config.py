@@ -11,16 +11,16 @@ DEFAULT_FILEPATH = '/data/config/auto/config.json'
 
 DEFAULT_OUTDIRS = {
   "outdir_samples": "",
-  "outdir_txt2img_samples": "/output/txt2img",
-  "outdir_img2img_samples": "/output/img2img",
-  "outdir_extras_samples": "/output/extras",
+  "outdir_txt2img_samples": "/output/auto1111/txt2img",
+  "outdir_img2img_samples": "/output/auto1111/img2img",
+  "outdir_extras_samples": "/output/auto1111/extras",
   "outdir_grids": "",
-  "outdir_txt2img_grids": "/output/txt2img-grids",
-  "outdir_img2img_grids": "/output/img2img-grids",
-  "outdir_save": "/output/saved",
-  "outdir_init_images": "/output/init-images",
+  "outdir_txt2img_grids": "/output/auto1111/txt2img-grids",
+  "outdir_img2img_grids": "/output/auto1111/mg2img-grids",
+  "outdir_save": "/output/auto1111/saved",
+  "outdir_init_images": "/output/auto1111/init-images",
 }
-RE_VALID_OUTDIR = re.compile(r"(^/output(/\.?[\w\-\_]+)+/?$)|(^\s?$)")
+RE_VALID_OUTDIR = re.compile(r"(^/output/auto1111(/\.?[\w\-\_]+)+/?$)|(^\s?$)")
 
 DEFAULT_OTHER = {
   "font": "DejaVuSans.ttf",
