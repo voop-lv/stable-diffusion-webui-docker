@@ -100,5 +100,7 @@ services:
     profiles: ["fooocus-mre"]
     build: ./services/fooocus/mre
     image: sd-fooocus-mre:1
+    stdin_open: true
+    tty: true
     environment:
       - CLI_ARGS=
