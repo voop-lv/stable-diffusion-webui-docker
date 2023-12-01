@@ -28,6 +28,9 @@ RUN mkdir -p /cleanConfig && \
     cp -r -f -v ${ROOT}/sdxl_styles/* /cleanConfig/sdxl_styles && \
     cp -r -f -v ${ROOT}/settings-example.json /cleanConfig/settings.json
 
+RUN cd ${ROOT} && \
+    pip install -r requirements_versions.txt
+
 WORKDIR ${ROOT}
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV CLI_ARGS=""
