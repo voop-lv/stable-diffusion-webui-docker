@@ -20,12 +20,12 @@ RUN git clone https://github.com/lllyasviel/Fooocus /fooocus-ai && \
 ENV ROOT=/fooocus-ai
 
 RUN mkdir -p /cleanConfig && \
-    mkdir /cleanConfig/prompt_expansion && \
-    mkdir /cleanConfig/sdxl_styles && \
-    mkdir /cleanConfig/model_configs && \
+    mkdir -p /cleanConfig/prompt_expansion && \
+    mkdir -p /cleanConfig/sdxl_styles && \
+    mkdir -p /cleanConfig/model_configs && \
     cp -r -f -v ${ROOT}/models/prompt_expansion/* /cleanConfig/prompt_expansion && \
     cp -r -f -v ${ROOT}/models/configs/* /cleanConfig/model_configs && \
-    cp -r -f -v ${ROOT}/sdxl_styles/* /cleanConfig/sdxl_styles && \
+    cp -r -f -v ${ROOT}/sdxl_styles/* /cleanConfig/sdxl_styles
 
 RUN cd ${ROOT} && \
     python3 -m venv fooocus_env && \
