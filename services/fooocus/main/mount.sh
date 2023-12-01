@@ -16,7 +16,7 @@ if [ -z "$(ls -A /data/models/model_configs)" ]; then
     cp -r -f -v /cleanConfig/model_configs/* /data/models/model_configs
 fi
 
-MOUNTS["${ROOT}/outputs"]="/output/fooocus-mre"
+MOUNTS["${ROOT}/outputs"]="/output/fooocus"
 
 MOUNTS["${ROOT}/models/checkpoints"]="/data/models/Stable-diffusion"
 MOUNTS["${ROOT}/models/controlnet"]="/data/models/ControlNet"
