@@ -4,6 +4,9 @@ ENV DEBIAN_FRONTEND noninteractive
 COPY entrypoint.sh /entrypoint.sh
 COPY mount.sh /mount.sh
 
+RUN chmod -R 755 /entrypoint.sh 
+RUN chmod -R 755 /mount.sh
+
 RUN --mount=type=cache,target=/var/cache/apt apt-get update -y && \
         apt-get full-upgrade -y && \
         apt-get install -y aria2 libgl1 libglib2.0-0 wget git git-lfs python3-pip python-is-python3 && \
