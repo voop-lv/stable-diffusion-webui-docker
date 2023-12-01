@@ -6,6 +6,7 @@ ROOT_PAHT="/fooocus-ai"
 mkdir /data/models/model_configs > /dev/null 2>&1
 mkdir /data/models/prompt_expansion > /dev/null 2>&1
 mkdir /data/models/clip_vision > /dev/null 2>&1
+mkdir /output/fooocus-mre > /dev/null 2>&1
 
 if [ -z "$(ls -A /data/models/prompt_expansion)" ]; then
     cp -r -f -v /cleanConfig/prompt_expansion/* /data/models/prompt_expansion
@@ -15,7 +16,7 @@ if [ -z "$(ls -A /data/models/model_configs)" ]; then
     cp -r -f -v /cleanConfig/model_configs/* /data/models/model_configs
 fi
 
-MOUNTS["${ROOT}/outputs"]="/output"
+MOUNTS["${ROOT}/outputs"]="/output/fooocus-mre"
 
 MOUNTS["${ROOT}/models/checkpoints"]="/data/models/Stable-diffusion"
 MOUNTS["${ROOT}/models/controlnet"]="/data/models/ControlNet"
