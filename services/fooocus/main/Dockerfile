@@ -26,7 +26,6 @@ RUN mkdir -p /cleanConfig && \
     cp -r -f -v ${ROOT}/models/prompt_expansion/* /cleanConfig/prompt_expansion && \
     cp -r -f -v ${ROOT}/models/configs/* /cleanConfig/model_configs && \
     cp -r -f -v ${ROOT}/sdxl_styles/* /cleanConfig/sdxl_styles && \
-    cp -r -f -v ${ROOT}/settings-example.json /cleanConfig/settings.json
 
 RUN cd ${ROOT} && \
     python3 -m venv fooocus_env && \

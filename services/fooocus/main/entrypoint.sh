@@ -2,7 +2,6 @@
 
 set -Eeuo pipefail
 
-SETTINGS_FILEPATH="/data/config/fooocus/settings.json"
 SDXL_STYLES="/data/config/fooocus/sdxl_styles"
 ROOT_PAHT="/fooocus-ai"
 
@@ -15,19 +14,6 @@ checkFile() {
 }
 
 mkdir -p /data/config/fooocus
-
-echo "[BOOTSTRAP] Validating settings.json"
-if ! checkFile $SETTINGS_FILEPATH; then
-    echo "[BOOTSTRAP] Failed to find settings.json in the config path. Copying a fresh copy."
-    cp -r -f -v /cleanConfig/settings.json $SETTINGS_FILEPATH
-    if checkFile $SETTINGS_FILEPATH; then
-        echo "[BOOTSTRAP] Clean file was copied"
-    else
-        echo "[BOOTSTRAP] Failed to copy. Exiting"
-        exit 1 
-    fi
-fi
-
 echo "[BOOTSTRAP] Validating sdxl_styles"
 if ! checkDir $SDXL_STYLES; then 
     echo "[BOOTSTRAP] Failed to find sdxl_styles in the config path. Copying a fresh copy."
@@ -39,9 +25,6 @@ if ! checkDir $SDXL_STYLES; then
         exit 1 
     fi 
 fi
-
-echo "[BOOTSTRAP] Copying settings.json"
-cp -r -f -v $SETTINGS_FILEPATH $ROOT_PAHT 
 
 echo "[BOOTSTRAP] Applying Mounts"
 bash /mount.sh
