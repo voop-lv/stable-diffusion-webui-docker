@@ -18,7 +18,7 @@ ENV ROOT=/fooocus-ai
 
 RUN mkdir -p /cleanConfig && \
     mkdir /cleanConfig/prompt_expansion && \
-    mkdir /cleanConfig/sdxl_style && \
+    mkdir /cleanConfig/sdxl_styles && \
     mkdir /cleanConfig/model_configs && \
     cp -r -f -v ${ROOT}/models/prompt_expansion/* /cleanConfig/prompt_expansion && \
     cp -r -f -v ${ROOT}/models/configs/* /cleanConfig/model_configs && \
