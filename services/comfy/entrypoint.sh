@@ -12,6 +12,7 @@ mkdir -vp /data/models/CLIPEncoder
 mkdir -vp /data/models/sams
 mkdir -vp /data/models/seecoders
 mkdir -vp /data/models/mmdets
+mkdir -vp /data/models/insightface
 mkdir -vp /data/models/Stable-diffusion-XL-Base
 
 mkdir -vp ${ROOT}/STARUP_TEMP/web-extensions
@@ -35,6 +36,7 @@ MOUNTS["${ROOT}/models/checkpoints"]="/data/models/Stable-diffusion"
 MOUNTS["${ROOT}/models/sams"]="/data/models/sams"
 MOUNTS["${ROOT}/models/seecoders"]="/data/models/seecoders"
 MOUNTS["${ROOT}/models/mmdets"]="/data/models/mmdets"
+MOUNTS["${ROOT}/models/mmdets"]="/data/models/insightface"
 MOUNTS["${ROOT}/web/extensions"]="/data/config/comfy/web-extensions"
 
 cp -r -f ${ROOT}/web/extensions/* ${ROOT}/STARUP_TEMP/web-extensions
