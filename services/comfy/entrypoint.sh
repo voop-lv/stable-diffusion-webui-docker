@@ -67,7 +67,7 @@ process_directory() {
         for sub_dir in "${dir}"/*; do
             if [[ -d "${sub_dir}" ]]; then
                 install_requirements "${sub_dir}"
-                process_install_py "${sub_dir}"
+                process_install_py "${sub_dir}" || true
             fi
         done
     else
