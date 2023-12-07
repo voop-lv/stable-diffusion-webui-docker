@@ -59,10 +59,6 @@ process_install_py() {
     if [[ -f "${dir}/install.py" ]]; then
         python3 ${dir}/install.py
     fi
-
-    if [[ -f "${dir}/__init__.py" ]]; then
-        python3 ${dir}/__init__.py
-    fi
 }
 
 process_directory() {
@@ -71,6 +67,7 @@ process_directory() {
         for sub_dir in "${dir}"/*; do
             if [[ -d "${sub_dir}" ]]; then
                 install_requirements "${sub_dir}"
+                process_install_py "${sub_dir}"
             fi
         done
     else
