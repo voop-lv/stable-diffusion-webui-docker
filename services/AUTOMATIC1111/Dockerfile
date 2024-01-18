@@ -15,7 +15,7 @@ RUN . /clone.sh clip-interrogator https://github.com/pharmapsychotic/clip-interr
 RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-models.git 9d759324e914de6c96dbd1468b3a4a50243c6528
 
 
-FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
+FROM pytorch/pytorch:2.1.2-cuda12.1-cudnn8-runtime
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
@@ -46,10 +46,12 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   pip install pyngrok xformers dctorch \
   git+https://github.com/TencentARC/GFPGAN.git@8d2447a2d918f8eba5a4a01463fd48e45126a379 \
   git+https://github.com/openai/CLIP.git@d50d76daa670286dd6cacf3bcd80b5e4823fc8e1 \
-  git+https://github.com/mlfoundations/open_clip.git@29b90b8dde9125c479c0ddbab477310f665a0435
+  git+https://github.com/mlfoundations/open_clip.git@v2.20.0
 
-RUN pip install open-clip-torch==2.20.0 
-
+# there seems to be a memory leak (or maybe just memory not being freed fast eno8ugh) that is fixed by this version of malloc
+# maybe move this up to the dependencies list.
+RUN apt-get -y install libgoogle-perftools-dev && apt-get clean
+ENV LD_PRELOAD=libtcmalloc.so
 
 COPY . /docker
 
