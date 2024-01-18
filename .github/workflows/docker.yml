@@ -16,6 +16,9 @@ jobs:
           - auto
           - invoke
           - comfy
+          - fooocus
+          - fooocus-mre
+          - ssui
           - download
     runs-on: ubuntu-latest
     name: ${{ matrix.profile }}
