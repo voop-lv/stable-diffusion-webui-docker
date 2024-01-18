@@ -43,6 +43,11 @@ TO BE UPDATED
 
 TO BE UPDATED
 
+### Fooocus
+
+TO BE UPDATED
+
+
 ## Contributing
 
 Contributions are welcome! **Create a discussion first of what the problem is and what you want to contribute (before you implement anything)**
@@ -62,4 +67,6 @@ Special thanks to everyone behind these awesome projects, without them, none of 
 - [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 - [CompVis/stable-diffusion](https://github.com/CompVis/stable-diffusion)
 - [Sygil-webui](https://github.com/Sygil-Dev/sygil-webui)
+- [Fooocus](https://github.com/lllyasviel/Fooocus)
+- [Fooocus-MRE](https://github.com/MoonRide303/Fooocus-MRE)
 - and many many more.
