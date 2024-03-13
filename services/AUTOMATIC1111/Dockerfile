@@ -2,7 +2,6 @@ FROM alpine/git:2.36.2 as download
 
 COPY clone.sh /clone.sh
 
-
 RUN . /clone.sh stable-diffusion-stability-ai https://github.com/Stability-AI/stablediffusion.git cf1d67a6fd5ea1aa600c4df58e5b47da45f6bdbf \
   && rm -rf assets data/**/*.png data/**/*.jpg data/**/*.gif
 
@@ -10,10 +9,9 @@ RUN . /clone.sh CodeFormer https://github.com/sczhou/CodeFormer.git 8392d0334956
   && rm -rf assets inputs
 
 RUN . /clone.sh BLIP https://github.com/salesforce/BLIP.git 48211a1594f1321b00f14c9f7a5b4813144b2fb9
-RUN . /clone.sh k-diffusion https://github.com/crowsonkb/k-diffusion.git 045515774882014cc14c1ba2668ab5bad9cbf7c0
+RUN . /clone.sh k-diffusion https://github.com/crowsonkb/k-diffusion.git 6ab5146d4a5ef63901326489f31f1d8e7dd36b48
 RUN . /clone.sh clip-interrogator https://github.com/pharmapsychotic/clip-interrogator.git bc07ce62c179d3aab3053a623d96a071101d11cb
-RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-models.git 9d759324e914de6c96dbd1468b3a4a50243c6528
-
+RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-models.git c51e4e30c285ed8f191a75fddb3869819c0f15d5
 
 FROM pytorch/pytorch:2.1.2-cuda12.1-cudnn8-runtime
 
@@ -45,8 +43,8 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 RUN --mount=type=cache,target=/root/.cache/pip \
   pip install pyngrok xformers==0.0.23.post1 dctorch \
   git+https://github.com/TencentARC/GFPGAN.git@8d2447a2d918f8eba5a4a01463fd48e45126a379 \
-  git+https://github.com/openai/CLIP.git@d50d76daa670286dd6cacf3bcd80b5e4823fc8e1 \
-  git+https://github.com/mlfoundations/open_clip.git@v2.20.0
+  git+https://github.com/openai/CLIP.git@a1d071733d7111c9c014f024669f959182114e33 \
+  git+https://github.com/mlfoundations/open_clip.git@v2.24.0
 
 # there seems to be a memory leak (or maybe just memory not being freed fast enough) that is fixed by this version of malloc
 # maybe move this up to the dependencies list.
