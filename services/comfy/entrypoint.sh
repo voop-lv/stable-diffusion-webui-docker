@@ -94,6 +94,7 @@ if [ -f "/data/config/comfy/startup.sh" ]; then
   popd
 fi
 
+chmod -R 777 $ROOT/custom_nodes
 process_directory "${ROOT}/custom_nodes"
 if [ ! -f "${ROOT}/web/extensions/core" ]; then
   echo Copying fresh copy of web-extensions core
