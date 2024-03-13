@@ -12,8 +12,6 @@ on:
           - info
           - warning
           - debug
-  push:
-    branches: master
   pull_request:
       paths:
         - docker-compose.yml
