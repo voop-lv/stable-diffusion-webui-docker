@@ -2,7 +2,7 @@
 
 set -Eeuo pipefail
 
-pip install -v -U git+https://github.com/facebookresearch/xformers.git@v0.0.25#egg=xformers
+pip install -v -U git+https://github.com/facebookresearch/xformers.git@main#egg=xformers
 
 # TODO: move all mkdir -p ?
 mkdir -p /data/config/auto/scripts/
