@@ -43,7 +43,8 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   pip install -r ${ROOT}/repositories/CodeFormer/requirements.txt
 
 RUN --mount=type=cache,target=/root/.cache/pip \
-  pip install pyngrok xformers==0.0.25 dctorch \
+  pip install --pre -U xformers \
+  pip install pyngrok dctorch \
   git+https://github.com/TencentARC/GFPGAN.git@8d2447a2d918f8eba5a4a01463fd48e45126a379 \
   git+https://github.com/openai/CLIP.git@a1d071733d7111c9c014f024669f959182114e33 \
   git+https://github.com/mlfoundations/open_clip.git@v2.24.0

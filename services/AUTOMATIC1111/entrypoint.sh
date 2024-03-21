@@ -2,6 +2,8 @@
 
 set -Eeuo pipefail
 
+pip install -v -U git+https://github.com/facebookresearch/xformers.git@v0.0.25#egg=xformers
+
 # TODO: move all mkdir -p ?
 mkdir -p /data/config/auto/scripts/
 # mount scripts individually
