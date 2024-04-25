@@ -1,16 +1,11 @@
-FROM alpine:3.17 as xformers
-RUN apk add --no-cache aria2
-RUN aria2c -x 5 --dir / --out wheel.whl 'https://github.com/AbdBarho/stable-diffusion-webui-docker/releases/download/6.0.0/xformers-0.0.21.dev544-cp310-cp310-manylinux2014_x86_64-pytorch201.whl'
-
-#FROM pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime
-FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
+FROM pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
-RUN apt-get update && apt-get install -y git && apt-get clean
 
 RUN apt-get update && apt-get install -y git gcc g++ ffmpeg libsm6 libxext6 libglfw3-dev libgles2-mesa-dev pkg-config libcairo2 libcairo2-dev build-essential fonts-dejavu-core rsync git jq moreutils aria2 && apt-get clean
 
 ENV ROOT=/stable-diffusion
+ENV CUDA_HOME=/opt/conda
 
 RUN --mount=type=cache,target=/root/.cache/pip \
   git clone https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
@@ -18,10 +13,9 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git checkout master && \
   pip install -r requirements.txt
 
-RUN --mount=type=cache,target=/root/.cache/pip  \
-  --mount=type=bind,from=xformers,source=/wheel.whl,target=/xformers-0.0.21-cp310-cp310-linux_x86_64.whl \
-  pip install /xformers-0.0.21-cp310-cp310-linux_x86_64.whl \
-  pip install insightface onnxruntime-gpu
+RUN mkdir -vp /CLEAN_CONFIG/web/extensions
+RUN cp -r -f -v ${ROOT}/web/extensions/* /CLEAN_CONFIG/web/extensions
+RUN rm -rf ${ROOT}/web/extensions/
 
 WORKDIR ${ROOT}
 
@@ -32,13 +26,15 @@ ADD https://github.com/madebyollin/taesd/raw/main/taesdxl_decoder.pth \
   ${ROOT}/models/vae_approx/taesdxl_decoder.pth
 
 RUN --mount=type=cache,target=/root/.cache/pip \
-  git fetch && \
-  git checkout ${BRANCH} && \
-  pip install -r requirements.txt && \
-  pip install opencv-python
+  echo "[INSTALL] Installing 'Openmim' and 'mmcv' this could take a bit..." \
+  pip install opencv-python mmdet mmengine && \
+  pip install -U openmim && \
+  mim install mmcv insightface onnxruntime-gpu
+
 
 COPY . /docker/
 RUN chmod u+x /docker/entrypoint.sh && cp /docker/extra_model_paths.yaml ${ROOT}
+RUN conda install -c nvidia cuda --no-update-deps -y
 
 ENV NVIDIA_VISIBLE_DEVICES=all 
 ENV PYTHONPATH="${PYTHONPATH}:${PWD}" 
