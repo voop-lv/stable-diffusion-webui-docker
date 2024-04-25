@@ -16,8 +16,6 @@ mkdir -vp /data/models/onnx
 mkdir -vp /data/models/insightface
 mkdir -vp /data/models/Stable-diffusion-XL-Base
 
-mkdir -vp ${ROOT}/STARUP_TEMP/web-extensions
-
 declare -A MOUNTS
 
 MOUNTS["/root/.cache"]="/data/.cache"
@@ -39,9 +37,6 @@ MOUNTS["${ROOT}/models/seecoders"]="/data/models/seecoders"
 MOUNTS["${ROOT}/models/mmdets"]="/data/models/mmdets"
 MOUNTS["${ROOT}/models/onnx"]="/data/models/onnx"
 MOUNTS["${ROOT}/models/insightface"]="/data/models/insightface"
-MOUNTS["${ROOT}/web/extensions"]="/data/config/comfy/web-extensions"
-
-cp -r -f ${ROOT}/web/extensions/* ${ROOT}/STARUP_TEMP/web-extensions
 
 install_requirements() {
     local dir="$1"
@@ -75,6 +70,11 @@ process_directory() {
     fi
 }
 
+copyFreshExtenstion() {
+  echo Copying fresh copy of web-extensions core
+  cp -r -f -v "/CLEAN_CONFIG/web/extensions/*" "${ROOT}/web/extensions/"
+}
+
 
 for to_path in "${!MOUNTS[@]}"; do
   set -Eeuo pipefail
@@ -96,12 +96,13 @@ fi
 
 chmod -R 777 $ROOT/custom_nodes
 process_directory "${ROOT}/custom_nodes"
-if [ ! -f "${ROOT}/web/extensions/core" ]; then
-  echo Copying fresh copy of web-extensions core
-  cp -r -f -v ${ROOT}/STARUP_TEMP/web-extensions/* ${ROOT}/web/extensions/
-fi
 
-rm -rf ${ROOT}/STARUP_TEMP
+WEB_EXTENSIONS="${ROOT}/web/extensions"
+
+if [ -z "$(find "${WEB_EXTENSIONS}" -mindepth 1)" ]; then
+  echo "[WARNING] Web Extensions are empty"
+  copyFreshExtenstion
+fi
 
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}

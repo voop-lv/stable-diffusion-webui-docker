@@ -33,6 +33,14 @@ This repository provides multiple UIs for you to play around with stable diffusi
 | Workflow                                                                         |
 | -------------------------------------------------------------------------------- |
 | ![](https://github.com/comfyanonymous/ComfyUI/raw/master/comfyui_screenshot.png) |
+ 
+#### Notice (For using ComfyUI web-extensions)
+
+> If you want to add ComfyUI Manager you need update the docker-compose file where it does mount web-extensions. Since from the last couple of ComfyUI updates the Web is refusing to take notice of linux sybomlic links and there will be a lot of errors being thrown in the console. Right now this is a working solution or a fix for now until a better solution is found.
+```yml
+volumes:
+    - "/path/to/your/web/extensions:/stable-diffusion/web/extensions"
+```
 
 
 ### [Sygil](https://github.com/Sygil-Dev/sygil-webui)
